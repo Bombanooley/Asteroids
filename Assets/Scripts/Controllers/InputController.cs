@@ -4,7 +4,7 @@ using static Asteroids.NameManager;
 
 namespace Asteroids
 {
-    public class InputController : MonoBehaviour, IController
+    public class InputController :  IController
     {
         private readonly IAttack _attack;
         private readonly Ship _ship;

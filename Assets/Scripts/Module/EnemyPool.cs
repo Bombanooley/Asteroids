@@ -37,6 +37,7 @@ namespace Asteroids.Object_Pool
             }
             return result;
         }
+
         private HashSet<Enemy> GetListEnemies(string type)
         {
             return _enemyPool.ContainsKey(type) ? _enemyPool[type] :

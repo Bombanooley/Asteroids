@@ -4,14 +4,20 @@ using static Asteroids.NameManager;
 
 namespace Asteroids
 {
-    public abstract class Enemy : MonoBehaviour
+    public abstract class Enemy : MonoBehaviour, IEnemyMove, IRotation
     {
         private static float _minPositionOffset = 1f;
         private static float _maxPositionOffset = 5f;
 
+        private IEnemyMove _moveImplementation;
+        private IRotation _rotationImplementation;
+
         private Transform _rotPool;
         private Health _health;
-        public Health Health 
+        private float _speed;
+        public float Speed { get => _speed; private set => _speed = value; }
+
+        public Health Health
         {
             get
             {
@@ -36,10 +42,22 @@ namespace Asteroids
             }
         }
 
+        private void Start()
+        {
+
+        }
+
+        private float RandomSpeed()
+        {
+            var speed = Range(0.05f, 1f);
+            _speed = speed;
+            return speed;
+        }
+
         /// <summary>
         /// Активация врага
         /// </summary>
-        /// <param name="position">Позиция активации активации</param>
+        /// <param name="position">Позиция активации</param>
         /// <param name="rotation">Кватернион активации</param>
         public void ActivateEnemy(Vector3 position, Quaternion rotation)
         {
@@ -47,18 +65,23 @@ namespace Asteroids
             transform.localRotation = rotation;
             gameObject.SetActive(true);
             transform.SetParent(null);
+            _moveImplementation = new MoveTransform(transform, RandomSpeed());
+            _rotationImplementation = new RotationShip(transform);
         }
 
         /// <summary>
         /// Активация врага
         /// </summary>
         /// <param name="position">Позиция активации активации</param>
-        public void ActivateEnemy (Vector3 position)
+        public void ActivateEnemy(Vector3 position)
         {
             transform.localPosition = position;
             transform.localRotation = Quaternion.identity;
             gameObject.SetActive(true);
             transform.SetParent(null);
+            _moveImplementation = new MoveTransform(transform, RandomSpeed());
+            _rotationImplementation = new RotationShip(transform);
+            Health = new Health(100f);
         }
 
         /// <summary>
@@ -136,6 +159,26 @@ namespace Asteroids
         /// </summary>
         /// <param name="hp">Здоровье</param>
         public void DepedencyInjectHealth(Health hp) => Health = hp;
+
+        /// <summary>
+        /// Движение врагов
+        /// </summary>
+        /// <param name="horizontal"></param>
+        /// <param name="vertical"></param>
+        /// <param name="deltaTime"></param>
+        public void MoveEnemy(Vector3 direction, float deltaTime)
+        {
+            _moveImplementation.MoveEnemy(direction, deltaTime);
+        }
+
+        /// <summary>
+        /// Поворот врага
+        /// </summary>
+        /// <param name="direction"></param>
+        public void Rotation(Vector3 direction)
+        {
+            _rotationImplementation.Rotation(direction);
+        }
+
     }
-    
 }

@@ -343,6 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 2024689746}
   _cameraController: {fileID: 963194229}
+  _asteroidSpeed: 0
   direction: {x: 0, y: 0, z: 0}
 --- !u!4 &1120556823
 Transform:
@@ -377,6 +378,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2796825545063593918, guid: ac639da7ab2bbc34e8240dfa2b99dd17,
+        type: 3}
+      propertyPath: m_UsedByComposite
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796825545063593918, guid: ac639da7ab2bbc34e8240dfa2b99dd17,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796825545063593918, guid: ac639da7ab2bbc34e8240dfa2b99dd17,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796825545063593918, guid: ac639da7ab2bbc34e8240dfa2b99dd17,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -0.365
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796825545063593918, guid: ac639da7ab2bbc34e8240dfa2b99dd17,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: -0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796825545063593918, guid: ac639da7ab2bbc34e8240dfa2b99dd17,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796825545063593918, guid: ac639da7ab2bbc34e8240dfa2b99dd17,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796825545063593918, guid: ac639da7ab2bbc34e8240dfa2b99dd17,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
+      value: -0.135
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796825545063593918, guid: ac639da7ab2bbc34e8240dfa2b99dd17,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
+      value: 0.38
+      objectReference: {fileID: 0}
     - target: {fileID: 3322231551844130526, guid: ac639da7ab2bbc34e8240dfa2b99dd17,
         type: 3}
       propertyPath: m_RootOrder

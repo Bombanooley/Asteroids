@@ -3,14 +3,14 @@
 
 namespace Asteroids
 {
-    public sealed class Ship : IMove, IRotation
+    public sealed class Ship : IPlayerMove, IRotation
     {
-        private readonly IMove _moveImplementation;
+        private readonly IPlayerMove _moveImplementation;
         private readonly IRotation _rotationImplementation;
 
         public float Speed => _moveImplementation.Speed;
 
-        public Ship(IMove moveImplementation, IRotation rotationImplementation)
+        public Ship(IPlayerMove moveImplementation, IRotation rotationImplementation)
         {
             _moveImplementation = moveImplementation;
             _rotationImplementation = rotationImplementation;

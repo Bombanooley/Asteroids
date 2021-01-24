@@ -66,16 +66,19 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Controllers\AsteroidFactory.cs" />
     <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Controllers\GameController.cs" />
     <Compile Include="Assets\Scripts\Controllers\InputController.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IAttack.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IController.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IEnemyFactory.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IEnemyMove.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IExecute.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\IMove.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IPlayerMove.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IRotation.cs" />
     <Compile Include="Assets\Scripts\Module\AccelerationMove.cs" />
+    <Compile Include="Assets\Scripts\Module\BulletPool.cs" />
     <Compile Include="Assets\Scripts\Module\EnemyPool.cs" />
     <Compile Include="Assets\Scripts\Module\Health.cs" />
     <Compile Include="Assets\Scripts\Module\MoveTransform.cs" />

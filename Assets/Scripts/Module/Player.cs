@@ -43,11 +43,12 @@ namespace Asteroids
             _ship.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Time.deltaTime);
         }
 
-        public void InitializeShip()
+        public void InitializeShip(ref Ship ship)
         {
             var moveTransform = new AccelerationMove(transform, _speed, _acceleration);
             var rotation = new RotationShip(transform);
-            _ship = new Ship(moveTransform, rotation);
+            ship = new Ship(moveTransform, rotation);
+            _ship = ship;
 
         }
         private void OnCollisionEnter2D(Collision2D other)
