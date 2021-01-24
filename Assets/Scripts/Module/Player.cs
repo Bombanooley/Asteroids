@@ -32,7 +32,6 @@ namespace Asteroids
             var temAmmunition = Instantiate(_bullet, _barrel.position, _barrel.rotation);
             temAmmunition.AddForce(_barrel.up * _force);
             Destroy(temAmmunition.gameObject, _bulletLifeSpam);
-            Debug.Log("Attack");
         }
 
         public void Execute()

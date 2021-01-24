@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static Asteroids.NameManager;
 
 
 namespace Asteroids
@@ -22,20 +23,20 @@ namespace Asteroids
 
         public void Updater()
         {
-            direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _player.transform.position;
+            direction = _camera.ScreenToWorldPoint(Input.mousePosition) - _player.transform.position;
             _ship.Rotation(direction);
 
 
 
-            _ship.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Time.deltaTime);
+            _ship.Move(Input.GetAxis(HORIZONTAL), Input.GetAxis(VERTICAL), Time.deltaTime);
 
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown(FIRE1))
                 _attack.Attack();
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(ACCELERATION))
                 _ship.AddAcceleration();
 
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            if (Input.GetKeyUp(ACCELERATION))
                 _ship.RemoveAcceleration();
         }
     }
