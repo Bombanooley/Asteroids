@@ -4,6 +4,7 @@ using static Asteroids.NameManager;
 
 namespace Asteroids
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public abstract class Enemy : MonoBehaviour, IEnemyMove, IRotation
     {
         private static float _minPositionOffset = 1f;
@@ -35,16 +36,11 @@ namespace Asteroids
             {
                 if (_rotPool == null)
                 {
-                    var find = GameObject.Find(POOL_AMMUNITION);
+                    var find = GameObject.Find(POOL_ENEMIES);
                     _rotPool = find == null ? null : find.transform;
                 }
                 return _rotPool;
             }
-        }
-
-        private void Start()
-        {
-
         }
 
         private float RandomSpeed()
@@ -65,7 +61,8 @@ namespace Asteroids
             transform.localRotation = rotation;
             gameObject.SetActive(true);
             transform.SetParent(null);
-            _moveImplementation = new MoveTransform(transform, RandomSpeed());
+            var rigidBody = GetComponent<Rigidbody2D>();
+            _moveImplementation = new MoveRigidbody(transform, rigidBody, RandomSpeed());
             _rotationImplementation = new RotationShip(transform);
         }
 
@@ -79,7 +76,8 @@ namespace Asteroids
             transform.localRotation = Quaternion.identity;
             gameObject.SetActive(true);
             transform.SetParent(null);
-            _moveImplementation = new MoveTransform(transform, RandomSpeed());
+            var rigidBody = GetComponent<Rigidbody2D>();
+            _moveImplementation = new MoveRigidbody(transform, rigidBody, RandomSpeed());
             _rotationImplementation = new RotationShip(transform);
             Health = new Health(100f);
         }
@@ -166,9 +164,10 @@ namespace Asteroids
         /// <param name="horizontal"></param>
         /// <param name="vertical"></param>
         /// <param name="deltaTime"></param>
-        public void MoveEnemy(Vector3 direction, float deltaTime)
+        public void MoveEnemy(Vector3 direction, float deltaTime, Rigidbody2D rigidbody= null)
         {
-            _moveImplementation.MoveEnemy(direction, deltaTime);
+            var rigidBody = GetComponent<Rigidbody2D>();
+            _moveImplementation.MoveEnemy(direction, deltaTime, rigidBody);
         }
 
         /// <summary>

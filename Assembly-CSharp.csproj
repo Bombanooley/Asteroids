@@ -78,9 +78,11 @@
     <Compile Include="Assets\Scripts\Interfaces\IPlayerMove.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IRotation.cs" />
     <Compile Include="Assets\Scripts\Module\AccelerationMove.cs" />
+    <Compile Include="Assets\Scripts\Module\Bullet.cs" />
     <Compile Include="Assets\Scripts\Module\BulletPool.cs" />
     <Compile Include="Assets\Scripts\Module\EnemyPool.cs" />
     <Compile Include="Assets\Scripts\Module\Health.cs" />
+    <Compile Include="Assets\Scripts\Module\MoveRigidbody.cs" />
     <Compile Include="Assets\Scripts\Module\MoveTransform.cs" />
     <Compile Include="Assets\Scripts\Module\NameManager.cs" />
     <Compile Include="Assets\Scripts\Module\Player.cs" />

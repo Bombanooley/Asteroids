@@ -2,7 +2,7 @@
 
 namespace Asteroids
 {
-    internal class MoveTransform : IPlayerMove, IEnemyMove
+    internal class MoveTransform
     {
         private readonly Transform _transform;
         private Vector3 _move;
@@ -15,14 +15,15 @@ namespace Asteroids
             Speed = speed;
         }
 
-        public void Move(float horizontal, float vertical,  float deltaTime)
+        public void Move(float horizontal, float vertical, float deltaTime, Rigidbody2D rigidbody)
         {
             var speed = deltaTime * Speed;
             _move.Set(horizontal * speed, vertical * speed, 0.0f);
+
             _transform.localPosition += _move;
         }
 
-        public void MoveEnemy(Vector3 direction, float deltaTime)
+        public void MoveEnemy(Vector3 direction, float deltaTime, Rigidbody2D rigidbody)
         {
             var speed = deltaTime * Speed;
             _move.Set(direction.x * speed, direction.y * speed, 0.0f);

@@ -10,8 +10,12 @@ namespace Asteroids
     {
         private readonly EnemyPool _enemyPool;
         private readonly Player _player;
+        private readonly Rigidbody2D _rigidBody;
         private List<Enemy> _listOfEnemies = new List<Enemy>();
         private List<Vector3> _directionOfEnemies = new List<Vector3>();
+        private float _timer = 0f;
+        private const float TIMER_COUNT = 3f;
+        private const float DIRECTION_CHANGE_CHANCE = 0.3f;
 
 
         public EnemyController(EnemyPool enemyPool, Player player)
@@ -25,6 +29,20 @@ namespace Asteroids
             if (_listOfEnemies.Count < 5)
                 AsteroidSpawn(_enemyPool);
             MoveEnemies();
+
+            for (int i = 0; i < _listOfEnemies.Count; i++)
+                Debug.DrawRay(_listOfEnemies[i].transform.position, _directionOfEnemies[i], Color.red);
+            
+            _timer += Time.deltaTime;
+            if (_timer > TIMER_COUNT)
+            {
+                for (int i = 0; i < _directionOfEnemies.Count; i++)
+                {
+                    var random = value;
+                    if (random > DIRECTION_CHANGE_CHANCE) _directionOfEnemies[i] = RandomDirection();
+                    }
+                _timer = 0f;
+            }
         }
 
         /// <summary>

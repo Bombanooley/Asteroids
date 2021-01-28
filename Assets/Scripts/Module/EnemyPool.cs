@@ -19,7 +19,7 @@ namespace Asteroids.Object_Pool
             if (!_rootPool)
             {
                 _rootPool = new
-               GameObject(NameManager.POOL_AMMUNITION).transform;
+               GameObject(NameManager.POOL_ENEMIES).transform;
             }
         }
 

@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using static Asteroids.NameManager;
 
 namespace Asteroids
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public sealed class Player : MonoBehaviour, IAttack, IExecute
     {
         [SerializeField] private float _speed;
@@ -11,6 +13,7 @@ namespace Asteroids
         [SerializeField] private Transform _barrel;
         [SerializeField] private float _force;
         [SerializeField] private float _bulletLifeSpam;
+        private Rigidbody2D _rigidbody;
 
         private Camera _camera;
         private Ship _ship;
@@ -25,6 +28,7 @@ namespace Asteroids
         private void Start()
         {
             _camera = Camera.main;
+            _rigidbody = GetComponent<Rigidbody2D>();
         }
 
         public void Attack()
@@ -40,23 +44,26 @@ namespace Asteroids
 
             _ship.Rotation(direction);
 
-            _ship.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Time.deltaTime);
+            _ship.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Time.deltaTime, _rigidbody);
         }
 
         public void InitializeShip(ref Ship ship)
         {
-            var moveTransform = new AccelerationMove(transform, _speed, _acceleration);
+            var moveTransform = new AccelerationMove(transform, _rigidbody, _speed, _acceleration);
             var rotation = new RotationShip(transform);
-            ship = new Ship(moveTransform, rotation);
+            ship = new Ship(moveTransform, rotation, _rigidbody);
             _ship = ship;
 
         }
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (_hp <= 0)
-                Destroy(gameObject);
-            else
-                _hp--;
+            if (other.gameObject.CompareTag(ENEMY))
+            {
+                if (_hp <= 0)
+                    Destroy(gameObject);
+                else
+                    _hp--;
+            }
         }
 
     }
