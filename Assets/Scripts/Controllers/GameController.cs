@@ -8,13 +8,15 @@ namespace Asteroids
     class GameController : MonoBehaviour
     {
         [SerializeField] private Player _player;
+        [SerializeField] private OutOfDisplayCheker _outOfDisplayCheker;
         [SerializeField] private CameraController _cameraController;
-        [SerializeField] private float _asteroidSpeed;
 
 
         private List<IController> _controllers = new List<IController>();
         private Ship _ship;
         private Rigidbody2D _rigidbody;
+        private EnemyPool _enemyPool;
+        private Data _data;
 
         public Vector3 direction;
 
@@ -32,11 +34,13 @@ namespace Asteroids
         {
             _player.InitializeShip(ref _ship);
             _rigidbody = _player.GetComponent<Rigidbody2D>();
+            _enemyPool = new EnemyPool(15);
+            _data = new Data(_player, _ship, _rigidbody, _enemyPool);
 
             _controllers.Add(_cameraController);
-            _controllers.Add(new PlayerController(_player));
-            _controllers.Add(new InputController(_player, _ship, _player, _rigidbody));
-            _controllers.Add(new EnemyController(new EnemyPool(5), _player));
+            _controllers.Add(new PlayerController(_data, _outOfDisplayCheker));
+            _controllers.Add(new InputController(_data));
+            _controllers.Add(new EnemyController(_data));
         }
 
         private void Update()

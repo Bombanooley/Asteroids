@@ -66,9 +66,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Controllers\AsteroidFactory.cs" />
     <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\Data.cs" />
     <Compile Include="Assets\Scripts\Controllers\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\EnemyCountController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\EnemyMoveController.cs" />
     <Compile Include="Assets\Scripts\Controllers\GameController.cs" />
     <Compile Include="Assets\Scripts\Controllers\InputController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\OutOfDisplayCheker.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IAttack.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IController.cs" />

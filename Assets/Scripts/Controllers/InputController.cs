@@ -14,13 +14,13 @@ namespace Asteroids
 
         public Vector3 direction;
 
-        public InputController(IAttack attack, Ship ship, Player player, Rigidbody2D rigidbody)
+        public InputController(Data data)
         {
-            _attack = attack;
-            _ship = ship;
-            _player = player;
+            _attack = data.Player;
+            _ship = data.Ship;
+            _player = data.Player;
             _camera = Camera.main;
-            _rigidbody = rigidbody;
+            _rigidbody = data.Rigidbody;
         }
 
         public void Updater()

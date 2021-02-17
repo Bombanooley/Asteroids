@@ -8,7 +8,7 @@ namespace Asteroids
     public abstract class Enemy : MonoBehaviour, IEnemyMove, IRotation
     {
         private static float _minPositionOffset = 1f;
-        private static float _maxPositionOffset = 5f;
+        private static float _maxPositionOffset = 7f;
 
         private IEnemyMove _moveImplementation;
         private IRotation _rotationImplementation;
@@ -17,6 +17,7 @@ namespace Asteroids
         private Health _health;
         private float _speed;
         public float Speed { get => _speed; private set => _speed = value; }
+        public float distance;
 
         public Health Health
         {
@@ -89,8 +90,8 @@ namespace Asteroids
         {
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
-            gameObject.SetActive(false);
             transform.SetParent(RotPool);
+            gameObject.SetActive(false);
 
             if (!RotPool)
                 Destroy(gameObject);
@@ -168,6 +169,7 @@ namespace Asteroids
         {
             var rigidBody = GetComponent<Rigidbody2D>();
             _moveImplementation.MoveEnemy(direction, deltaTime, rigidBody);
+            distance = transform.position.sqrMagnitude;
         }
 
         /// <summary>

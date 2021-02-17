@@ -13,6 +13,7 @@ namespace Asteroids
         [SerializeField] private Transform _barrel;
         [SerializeField] private float _force;
         [SerializeField] private float _bulletLifeSpam;
+        [SerializeField] private OutOfDisplayCheker _outOfDisplayCheker;
         private Rigidbody2D _rigidbody;
 
         private Camera _camera;
@@ -36,15 +37,21 @@ namespace Asteroids
             var temAmmunition = Instantiate(_bullet, _barrel.position, _barrel.rotation);
             temAmmunition.AddForce(_barrel.up * _force);
             Destroy(temAmmunition.gameObject, _bulletLifeSpam);
+
         }
 
         public void Execute()
         {
+            if (_hp <= 0)
+                Time.timeScale = 0f;
+
             var direction = _camera.ScreenToWorldPoint(Input.mousePosition);
 
             _ship.Rotation(direction);
 
             _ship.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Time.deltaTime, _rigidbody);
+
+            _outOfDisplayCheker.transform.position = transform.position;
         }
 
         public void InitializeShip(ref Ship ship)
@@ -59,13 +66,11 @@ namespace Asteroids
         {
             if (other.gameObject.CompareTag(ENEMY))
             {
-                if (_hp <= 0)
-                    Destroy(gameObject);
-                else
-                    _hp--;
+                    _hp -= 50f;
+                    Debug.Log($"Hit {_hp}");
+                    
             }
         }
-
     }
 }
 

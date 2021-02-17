@@ -5,7 +5,7 @@ namespace Asteroids
 {
     public class CameraController : MonoBehaviour, IController
     {
-        [SerializeField] [Range (0f, 1f)] private float _lerpValue;
+        [SerializeField] [Range (0f, 0.2f)] private float _lerpValue;
         [SerializeField] private Player _player;
         [SerializeField] private Vector3 _cameraOffset;
         private Camera _camera;
